@@ -4,27 +4,26 @@
 <head>
 </head>
 <body>
-<script>
-function makeLowercase() {
-document.form1.outstring.value = document.form1.instring.value.toLowerCase();}
-function makeUppercase() {
-document.form1.outstring.value = document.form1.instring.value.toUpperCase();}
-String.prototype.capitalize = function(){
-   return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
-  };
-function capWords() {
-var inputString = document.form1.instring; 
-var outputString = document.form1.outstring; 
-outputString.value = inputString.value.capitalize();
-}
-</script>
-<h1>Convertir texto en mayúsculas, minúsculas y capitalizar</h1>
-<form name="form1" method="post">
-<input name="instring" type="text" value="CONVIERTELO" size="30">
-<input type="button" name="Convert" value="Minúsculas" onClick="makeLowercase();">
-<input type="button" name="Convert" value="Mayúsculas" onClick="makeUppercase();">
-<input type="button" name="Capitalize" value="Capitalizar" onClick="capWords();">
-<input name="outstring" type="text" value="" size="30">
+<h1>Mostrar coordenadas del ratón</h1>
+<form name="Show">
+X <input type="text" name="MouseX" value="0" size="4"><br>
+Y <input type="text" name="MouseY" value="0" size="4"><br>
 </form>
+<script>
+var IE = document.all?true:false;
+if (!IE) document.captureEvents(Event.MOUSEMOVE)
+document.onmousemove = getMouseXY;
+var tempX = 0;
+var tempY = 0;
+function getMouseXY(e) {
+if (IE) {tempX = event.clientX + document.body.scrollLeft;
+tempY = event.clientY + document.body.scrollTop;}
+else {tempX = e.pageX;tempY = e.pageY;}  
+if (tempX < 0){tempX = 0;}
+if (tempY < 0){tempY = 0;}  
+document.Show.MouseX.value = tempX;
+document.Show.MouseY.value = tempY;
+return true;}
+</script>
 </body>
 </html>    
