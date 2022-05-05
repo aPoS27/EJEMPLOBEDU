@@ -4,12 +4,27 @@
 <head>
 </head>
 <body>
-<h1>Dos formas de mostrar la fecha</h1>
 <script>
-var date=new Date();var d=date.getDate();var day=(d<10)?'0'+d:d;var m=date.getMonth()+1;var month=(m<10)?'0'+m:m;var yy=date.getYear();var year=(yy<1000)?yy+1900:yy;document.write(day+"/"+month+"/"+year);
-</script><br>
-<script>
-function makeArray(){for(i=0;i<makeArray.arguments.length;i++)this[i+1]=makeArray.arguments[i]}var months=new makeArray('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');var date=new Date();var day=date.getDate();var month=date.getMonth()+1;var yy=date.getYear();var year=(yy<1000)?yy+1900:yy;document.write("Hoy es "+day+ " de "+months[month]+" del "+year);
+function makeLowercase() {
+document.form1.outstring.value = document.form1.instring.value.toLowerCase();}
+function makeUppercase() {
+document.form1.outstring.value = document.form1.instring.value.toUpperCase();}
+String.prototype.capitalize = function(){
+   return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
+  };
+function capWords() {
+var inputString = document.form1.instring; 
+var outputString = document.form1.outstring; 
+outputString.value = inputString.value.capitalize();
+}
 </script>
+<h1>Convertir texto en mayúsculas, minúsculas y capitalizar</h1>
+<form name="form1" method="post">
+<input name="instring" type="text" value="CONVIERTELO" size="30">
+<input type="button" name="Convert" value="Minúsculas" onClick="makeLowercase();">
+<input type="button" name="Convert" value="Mayúsculas" onClick="makeUppercase();">
+<input type="button" name="Capitalize" value="Capitalizar" onClick="capWords();">
+<input name="outstring" type="text" value="" size="30">
+</form>
 </body>
 </html>    
